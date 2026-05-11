@@ -1,0 +1,12 @@
+# Carpetas de trabajo / archivos fuente grandes
+Fotos/
+kuiica_catalog_imgs/
+kuiica_imgs/
+
+# Documentos que no son parte del sitio
+*.pdf
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini

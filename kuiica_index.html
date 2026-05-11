@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>kuiica — Laboratorio de Economía Circular</title>
+  <meta name="description" content="Laboratorio colombiano de economía circular. Fabricamos maquinaria para reciclaje plástico y productos corporativos 100% hechos de plástico recuperado. Bogotá, Colombia.">
+  <meta property="og:title" content="kuiica — Laboratorio de Economía Circular">
+  <meta property="og:description" content="Fabricamos maquinaria para reciclaje plástico y productos corporativos personalizados 100% hechos de plástico recuperado. Bogotá, Colombia.">
+  <meta property="og:url" content="https://kuiica.com">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:      #FEF0E3;
+      --cream-dark: #F2E1CE;
+      --blue:       #7B7FD4;
+      --blue-dark:  #5C61B8;
+      --blue-light: #B0B3E8;
+      --dark:       #1C1C2E;
+      --text:       #3A3A4A;
+      --white:      #FFFFFF;
+      --shadow:     0 6px 32px rgba(123,127,212,.18);
+      --r:          18px;
+      --r-sm:       10px;
+      --nav-h:      72px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(123,127,212,.15);
+      height: var(--nav-h);
+      display: flex; align-items: center;
+      padding: 0 clamp(1rem, 5vw, 4rem);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    }
+    .logo {
+      display: flex; align-items: center; gap: .55rem;
+      color: var(--blue); font-size: 1.65rem; font-weight: 900; letter-spacing: -.02em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: .88rem; font-weight: 700; color: var(--blue);
+      text-transform: uppercase; letter-spacing: .06em; transition: opacity .2s;
+    }
+    .nav-links a:hover { opacity: .6; }
+    .btn-nav {
+      background: var(--blue); color: var(--white) !important;
+      padding: .5rem 1.3rem; border-radius: 100px;
+      font-size: .88rem; font-weight: 800;
+      transition: background .2s, transform .15s;
+    }
+    .btn-nav:hover { background: var(--blue-dark); opacity: 1 !important; transform: translateY(-1px); }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .hamburger span { display: block; width: 24px; height: 2.5px; background: var(--blue); border-radius: 2px; transition: all .3s; }
+    .nav-mobile {
+      display: none; position: absolute; top: var(--nav-h); left: 0; right: 0;
+      background: var(--cream); border-bottom: 1px solid rgba(123,127,212,.15);
+      padding: 1.5rem clamp(1rem, 5vw, 4rem); flex-direction: column; gap: 1.1rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { font-size: 1rem; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: .06em; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: calc(100vh - var(--nav-h));
+      display: flex; align-items: center;
+      position: relative; overflow: hidden; background: var(--cream);
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('img/hero.jpg') center/cover no-repeat;
+      opacity: .22;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 4rem);
+    }
+    .hero-eyebrow {
+      display: inline-block; background: var(--blue); color: var(--white);
+      font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+      padding: .35rem 1.1rem; border-radius: 100px; margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 7.5vw, 6.2rem); font-weight: 900;
+      color: var(--blue); line-height: 1.04; max-width: 740px;
+      margin-bottom: 1.5rem; text-transform: uppercase;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text);
+      max-width: 520px; margin-bottom: 2.5rem; font-weight: 600;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--blue); color: var(--white);
+      padding: .9rem 2rem; border-radius: 100px;
+      font-weight: 800; font-size: 1rem;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: transparent; color: var(--blue);
+      border: 2.5px solid var(--blue);
+      padding: .9rem 2rem; border-radius: 100px;
+      font-weight: 800; font-size: 1rem;
+      transition: all .2s;
+    }
+    .btn-secondary:hover { background: var(--blue); color: var(--white); transform: translateY(-2px); }
+    .hero-stats { display: flex; gap: 3rem; margin-top: 4.5rem; flex-wrap: wrap; }
+    .hero-stat-num { font-size: 2.4rem; font-weight: 900; color: var(--blue); line-height: 1; }
+    .hero-stat-lbl { font-size: .82rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: .07em; margin-top: .25rem; }
+
+    /* ── SHARED ── */
+    section { padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 4rem); }
+    .container { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .eyebrow {
+      font-size: .78rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .16em; color: var(--blue); margin-bottom: .75rem;
+    }
+    .s-title {
+      font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 900;
+      text-transform: uppercase; color: var(--blue); line-height: 1.08; margin-bottom: 1.25rem;
+    }
+    .s-lead { font-size: 1.05rem; font-weight: 600; color: var(--text); max-width: 580px; margin-bottom: 2.5rem; }
+
+    /* ── NOSOTROS ── */
+    #nosotros { background: var(--white); }
+    .nosotros-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .nosotros-img {
+      border-radius: var(--r); overflow: hidden;
+      aspect-ratio: 4/5; background: var(--cream);
+      min-height: 380px;
+    }
+    .nosotros-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── CICLO ── */
+    #ciclo { background: var(--cream); }
+    .ciclo-head { text-align: center; max-width: 580px; margin: 0 auto 1rem; }
+    .ciclo-head .s-lead { margin: 0 auto 0; }
+    .ciclo-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
+    .ciclo-card {
+      background: var(--white); border-radius: var(--r); padding: 2.5rem 2rem; text-align: center;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .ciclo-card:hover { transform: translateY(-7px); box-shadow: var(--shadow); }
+    .ciclo-icon {
+      width: 70px; height: 70px; background: var(--blue); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem; color: var(--white);
+    }
+    .ciclo-n { font-size: .78rem; font-weight: 800; color: var(--blue-light); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .4rem; }
+    .ciclo-card h3 { font-size: 1.35rem; font-weight: 900; color: var(--blue); text-transform: uppercase; margin-bottom: .6rem; }
+    .ciclo-card p { color: var(--text); font-size: .92rem; line-height: 1.65; }
+
+    /* ── IMPACTO ── */
+    #impacto { background: var(--blue); color: var(--white); }
+    #impacto .s-title { color: var(--white); }
+    #impacto .eyebrow { color: var(--blue-light); }
+    .impacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .impacto-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: .5rem; }
+    .i-stat {
+      background: rgba(255,255,255,.12); border-radius: var(--r); padding: 2rem 1.5rem;
+    }
+    .i-stat-icon { font-size: 2rem; margin-bottom: .5rem; }
+    .i-stat-num { font-size: 2.8rem; font-weight: 900; line-height: 1; margin-bottom: .35rem; }
+    .i-stat-lbl { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; opacity: .8; }
+    .plasticos { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2rem; }
+    .p-tag {
+      background: rgba(255,255,255,.15); border: 1.5px solid rgba(255,255,255,.3);
+      color: var(--white); padding: .38rem 1rem; border-radius: 100px;
+      font-size: .82rem; font-weight: 700;
+    }
+    .impacto-img { border-radius: var(--r); overflow: hidden; aspect-ratio: 1; background: rgba(255,255,255,.1); min-height: 340px; }
+    .impacto-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── MÁQUINAS ── */
+    #maquinas { background: var(--white); }
+    .maquinas-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+    .maq-card {
+      border-radius: var(--r); overflow: hidden; background: var(--cream);
+      display: flex; flex-direction: column;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .maq-card:hover { transform: translateY(-7px); box-shadow: var(--shadow); }
+    .maq-img { aspect-ratio: 4/3; background: var(--cream-dark); overflow: hidden; }
+    .maq-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s; }
+    .maq-card:hover .maq-img img { transform: scale(1.05); }
+    .maq-body { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
+    .maq-body h3 { font-size: 1.85rem; font-weight: 900; color: var(--blue); text-transform: uppercase; margin-bottom: .65rem; }
+    .maq-body > p { font-size: .92rem; color: var(--text); margin-bottom: 1.5rem; flex: 1; line-height: 1.65; }
+    .specs { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; margin-bottom: 1.5rem; }
+    .spec { background: rgba(123,127,212,.09); border-radius: var(--r-sm); padding: .6rem .75rem; }
+    .spec-lbl { font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; color: var(--blue-light); display: block; margin-bottom: .15rem; }
+    .spec-val { font-size: .88rem; font-weight: 700; color: var(--text); }
+    .maq-price { border-top: 1.5px solid rgba(123,127,212,.18); padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: flex-end; }
+    .price-cop { font-size: 1.25rem; font-weight: 900; color: var(--blue); }
+    .price-usd { font-size: .82rem; font-weight: 700; color: var(--text); opacity: .55; }
+    .price-note { font-size: .68rem; font-weight: 600; color: var(--text); opacity: .45; text-align: right; line-height: 1.5; }
+    .maq-note {
+      margin-top: 3rem; padding: 1.75rem 2rem;
+      background: rgba(123,127,212,.07); border-radius: var(--r);
+      border: 1.5px solid rgba(123,127,212,.18);
+      display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; justify-content: space-between;
+    }
+    .maq-note p { font-size: .88rem; color: var(--text); line-height: 1.7; }
+
+    /* ── PRODUCTOS ── */
+    #productos { background: var(--cream); }
+    .prod-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem; }
+    .prod-intro-img { border-radius: var(--r); overflow: hidden; aspect-ratio: 4/3; background: var(--cream-dark); }
+    .prod-intro-img img { width: 100%; height: 100%; object-fit: cover; }
+    .prod-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
+    .prod-card {
+      background: var(--white); border-radius: var(--r); overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .prod-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .prod-img { aspect-ratio: 1; background: var(--cream); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .prod-img img { width: 100%; height: 100%; object-fit: contain; padding: .75rem; box-sizing: border-box; transition: transform .4s; }
+    .prod-card:hover .prod-img img { transform: scale(1.05); }
+    .prod-body { padding: 1.1rem 1.25rem 1.4rem; }
+    .prod-body h4 { font-size: .95rem; font-weight: 900; text-transform: uppercase; color: var(--blue); margin-bottom: .3rem; }
+    .prod-body p { font-size: .8rem; color: var(--text); line-height: 1.5; }
+    .prod-badge {
+      display: inline-block; background: rgba(123,127,212,.1); color: var(--blue);
+      font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em;
+      padding: .22rem .65rem; border-radius: 100px; margin-top: .5rem;
+    }
+
+    /* ── TALLERES ── */
+    #talleres { background: var(--white); }
+    .talleres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .talleres-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .t-photo { border-radius: var(--r-sm); overflow: hidden; background: var(--cream-dark); aspect-ratio: 1; }
+    .t-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .t-photo:first-child { grid-column: 1 / -1; aspect-ratio: 2/1; }
+    .t-bullets { list-style: none; margin: 1.75rem 0; display: flex; flex-direction: column; gap: 1rem; }
+    .t-bullets li { display: flex; gap: .75rem; align-items: flex-start; }
+    .bullet-dot {
+      flex-shrink: 0; width: 26px; height: 26px; background: var(--blue); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; color: var(--white); margin-top: .15rem;
+    }
+    .t-bullets p { font-size: .93rem; color: var(--text); line-height: 1.6; }
+    .t-limits { display: flex; gap: 2.5rem; margin-top: 1.75rem; }
+    .lim-num { font-size: 2.2rem; font-weight: 900; color: var(--blue); line-height: 1; }
+    .lim-lbl { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text); }
+
+    /* ── CONTACTO ── */
+    #contacto { background: var(--cream); }
+    .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .c-items { display: flex; flex-direction: column; gap: 2rem; }
+    .c-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .c-icon {
+      width: 46px; height: 46px; background: var(--blue); border-radius: 50%;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--white);
+    }
+    .c-item h4 { font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; color: var(--blue); margin-bottom: .2rem; }
+    .c-item p, .c-item a { font-size: .98rem; font-weight: 600; color: var(--text); }
+    .c-item a:hover { color: var(--blue); }
+    .cta-box { background: var(--blue); border-radius: var(--r); padding: 2.75rem 2.25rem; color: var(--white); }
+    .cta-box h3 { font-size: 1.7rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; line-height: 1.2; }
+    .cta-box p { font-size: .93rem; opacity: .85; margin-bottom: 2rem; line-height: 1.7; }
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: .7rem;
+      background: #25D366; color: var(--white);
+      padding: 1rem 2rem; border-radius: 100px;
+      font-weight: 800; font-size: 1.02rem;
+      transition: filter .2s, transform .15s;
+    }
+    .btn-wa:hover { filter: brightness(1.1); transform: translateY(-2px); }
+    .redes { display: flex; gap: .75rem; margin-top: 1.75rem; }
+    .red-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 2px solid rgba(255,255,255,.3); color: var(--white);
+      padding: .55rem 1.1rem; border-radius: 100px;
+      font-weight: 700; font-size: .88rem;
+      transition: all .2s;
+    }
+    .red-btn:hover { background: rgba(255,255,255,.18); border-color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--dark); color: rgba(255,255,255,.65); padding: 2.5rem clamp(1rem,5vw,4rem); }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap;
+    }
+    .footer-logo { color: var(--white); font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; gap: .5rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { font-size: .83rem; font-weight: 600; color: rgba(255,255,255,.45); transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: .78rem; color: rgba(255,255,255,.3); }
+
+    /* ── FAB WHATSAPP ── */
+    .fab-wa {
+      position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 200;
+      width: 58px; height: 58px; background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,.45);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .fab-wa:hover { transform: scale(1.12); box-shadow: 0 6px 28px rgba(37,211,102,.55); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nosotros-grid,
+      .impacto-grid,
+      .talleres-grid,
+      .contacto-grid,
+      .prod-intro { grid-template-columns: 1fr; gap: 2.5rem; }
+      .ciclo-cards { grid-template-columns: 1fr; }
+      .maquinas-grid { grid-template-columns: 1fr; }
+      .prod-grid { grid-template-columns: 1fr 1fr; }
+      .impacto-stats { grid-template-columns: 1fr 1fr; }
+      .nosotros-img { aspect-ratio: 16/9; min-height: unset; }
+    }
+    @media (max-width: 540px) {
+      .prod-grid { grid-template-columns: 1fr; }
+      .impacto-stats { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.75rem; }
+      .maq-note { flex-direction: column; gap: 1.25rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo" aria-label="kuiica inicio">
+      <img src="/img/logo.png" width="44" height="50" alt="" aria-hidden="true" style="display:block;">
+      kuiica
+    </a>
+    <ul class="nav-links">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#maquinas">Máquinas</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#talleres">Talleres</a></li>
+      <li><a href="https://wa.me/573212437601" target="_blank" rel="noopener" class="btn-nav">Cotizar →</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#nosotros"  onclick="closeMenu()">Nosotros</a>
+    <a href="#maquinas"  onclick="closeMenu()">Máquinas</a>
+    <a href="#productos" onclick="closeMenu()">Productos</a>
+    <a href="#talleres"  onclick="closeMenu()">Talleres</a>
+    <a href="https://wa.me/573212437601" target="_blank" rel="noopener" class="btn-nav" style="text-align:center">Cotizar →</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Laboratorio · Bogotá, Colombia</span>
+    <h1 class="hero-title">El ciclo de la transformación real</h1>
+    <p class="hero-sub">Fabricamos maquinaria para reciclaje plástico y convertimos residuos en productos de alto valor. 100% colombiano.</p>
+    <div class="hero-ctas">
+      <a href="#maquinas"  class="btn-primary">Ver máquinas →</a>
+      <a href="#contacto" class="btn-secondary">Hablemos</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num counter" data-target="20">0</div>
+        <div class="hero-stat-lbl">Equipos fabricados</div>
+      </div>
+      <div>
+        <div class="hero-stat-num"><span class="counter" data-target="9000">0</span> kg</div>
+        <div class="hero-stat-lbl">Plástico recuperado</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">2022</div>
+        <div class="hero-stat-lbl">Fundación</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ NOSOTROS ═══════════════ -->
+<section id="nosotros">
+  <div class="container">
+    <div class="nosotros-grid">
+      <div class="nosotros-img fade-up">
+        <img src="img/nosotros.jpg" alt="Laboratorio Kuiica — plástico reciclado">
+      </div>
+      <div class="fade-up" style="transition-delay:.12s">
+        <p class="eyebrow">Sobre nosotros</p>
+        <h2 class="s-title">Investigación y transformación</h2>
+        <p class="s-lead">Somos un laboratorio dedicado a la investigación y transformación de residuos post industriales y orgánicos.</p>
+        <p style="color:var(--text);line-height:1.8;margin-bottom:1.5rem;">Nos gusta contar historias a través de los materiales y generar conciencia sobre el impacto del reciclaje en nuestro entorno. No solo reciclamos: recuperamos la utilidad del plástico para darle una segunda vida con propósito.<br><br>Cada veta y color en nuestras piezas es el sello de un proceso <strong>100% colombiano</strong> que le apuesta a la economía circular real.</p>
+        <a href="#contacto" class="btn-primary">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CICLO ═══════════════ -->
+<section id="ciclo">
+  <div class="container">
+    <div class="ciclo-head">
+      <p class="eyebrow">Nuestro modelo</p>
+      <h2 class="s-title">El ciclo de impacto</h2>
+      <p class="s-lead">En Kuiica, el impacto ocurre en tres etapas que se retroalimentan continuamente.</p>
+    </div>
+    <div class="ciclo-cards">
+
+      <div class="ciclo-card fade-up">
+        <div class="ciclo-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+        <div class="ciclo-n">01</div>
+        <h3>Tecnología</h3>
+        <p>Fabricamos la maquinaria para que la transformación sea posible. Picadoras, laminadoras y extrusoras diseñadas y construidas en Colombia.</p>
+      </div>
+
+      <div class="ciclo-card fade-up" style="transition-delay:.1s">
+        <div class="ciclo-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="12 2 22 12 12 22 2 12"/>
+          </svg>
+        </div>
+        <div class="ciclo-n">02</div>
+        <h3>Producto</h3>
+        <p>Diseñamos objetos que demuestran el valor del material recuperado: accesorios corporativos, mobiliario y piezas únicas hechas de plástico reciclado.</p>
+      </div>
+
+      <div class="ciclo-card fade-up" style="transition-delay:.2s">
+        <div class="ciclo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </div>
+        <div class="ciclo-n">03</div>
+        <h3>Conciencia</h3>
+        <p>Educamos mediante talleres donde la teoría se vuelve práctica. Tu equipo experimenta el ciclo completo del plástico, del residuo al objeto terminado.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ IMPACTO ═══════════════ -->
+<section id="impacto">
+  <div class="container">
+    <div class="impacto-grid">
+      <div>
+        <p class="eyebrow">Nuestro impacto</p>
+        <h2 class="s-title">Desde el año 2022</h2>
+        <div class="impacto-stats">
+          <div class="i-stat">
+            <div class="i-stat-icon">⚙️</div>
+            <div class="i-stat-num counter" data-target="20">0</div>
+            <div class="i-stat-lbl">Equipos fabricados</div>
+          </div>
+          <div class="i-stat">
+            <div class="i-stat-icon">♻️</div>
+            <div class="i-stat-num"><span class="counter" data-target="9000">0</span> kg</div>
+            <div class="i-stat-lbl">Plástico recuperado</div>
+          </div>
+        </div>
+        <p style="color:rgba(255,255,255,.8);margin-top:2rem;font-size:.93rem;line-height:1.75;">
+          Transformamos plásticos post industriales de un solo uso en insumos de alto valor. Nuestras máquinas trabajan con los siguientes materiales:
+        </p>
+        <div class="plasticos">
+          <span class="p-tag">♲ HDPE</span>
+          <span class="p-tag">♲ LDPE</span>
+          <span class="p-tag">♲ PP</span>
+          <span class="p-tag">♲ PS</span>
+          <span class="p-tag">♲ Otros</span>
+        </div>
+      </div>
+      <div class="impacto-img fade-up">
+        <img src="img/impacto.jpg" alt="Casa sobre base de plástico reciclado — Kuiica">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ MÁQUINAS ═══════════════ -->
+<section id="maquinas">
+  <div class="container">
+    <p class="eyebrow">Catálogo 2026</p>
+    <h2 class="s-title">Nuestras máquinas</h2>
+    <p class="s-lead">Maquinaria industrial para reciclaje de termoplásticos, fabricada en Colombia. Alimentación trifásica 220 V.</p>
+
+    <div class="maquinas-grid">
+
+      <!-- PICADORA -->
+      <div class="maq-card fade-up">
+        <div class="maq-img">
+          <img src="img/picadora.jpg" alt="Picadora Kuiica — tritura termoplásticos">
+        </div>
+        <div class="maq-body">
+          <h3>Picadora</h3>
+          <p>Tritura termoplásticos y los convierte en escamas de tamaño controlado, listas para ser procesadas en las siguientes etapas del ciclo de recuperación.</p>
+          <div class="specs">
+            <div class="spec"><span class="spec-lbl">Capacidad</span><span class="spec-val">8 kg / hora</span></div>
+            <div class="spec"><span class="spec-lbl">Motor</span><span class="spec-val">2 HP</span></div>
+            <div class="spec"><span class="spec-lbl">Cuchillas</span><span class="spec-val">Caja 21 cm</span></div>
+            <div class="spec"><span class="spec-lbl">Dimensiones</span><span class="spec-val">40 × 70 × 170 cm</span></div>
+          </div>
+          <div class="maq-price">
+            <div>
+              <div class="price-cop">$8.500.000 + IVA</div>
+              <div class="price-usd">≈ USD $2,400</div>
+            </div>
+            <div class="price-note">Puesta en fábrica<br>USD referencial</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAMINADORA -->
+      <div class="maq-card fade-up" style="transition-delay:.1s">
+        <div class="maq-img">
+          <img src="img/laminadora.jpg" alt="Laminadora Kuiica — convierte escamas en láminas">
+        </div>
+        <div class="maq-body">
+          <h3>Laminadora</h3>
+          <p>Toma las escamas de la picadora y las convierte en láminas sólidas mediante calor y presión. Dos tamaños disponibles: 60×60 cm y 100×100 cm.</p>
+          <div class="specs">
+            <div class="spec"><span class="spec-lbl">Capacidad</span><span class="spec-val">16 kg / hora</span></div>
+            <div class="spec"><span class="spec-lbl">Área útil</span><span class="spec-val">60×60 / 100×100</span></div>
+            <div class="spec"><span class="spec-lbl">Presión</span><span class="spec-val">2 gatos hidráulicos 2T</span></div>
+            <div class="spec"><span class="spec-lbl">Dimensiones</span><span class="spec-val">118 × 117 × 120 cm</span></div>
+          </div>
+          <div class="maq-price">
+            <div>
+              <div class="price-cop">Desde $16.000.000 + IVA</div>
+              <div class="price-usd">≈ USD $4,500</div>
+            </div>
+            <div class="price-note">2 tamaños<br>USD referencial</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXTRUSORA -->
+      <div class="maq-card fade-up" style="transition-delay:.2s">
+        <div class="maq-img">
+          <img src="img/extrusora.jpg" alt="Extrusora Kuiica — convierte escamas en perfiles">
+        </div>
+        <div class="maq-body">
+          <h3>Extrusora</h3>
+          <p>Convierte las escamas en perfiles. Permite crear diferentes colores según la mezcla y el molde utilizado. Incluye molde para perfil 4×4×200 cm.</p>
+          <div class="specs">
+            <div class="spec"><span class="spec-lbl">Capacidad</span><span class="spec-val">8 kg / hora</span></div>
+            <div class="spec"><span class="spec-lbl">Temp. máx.</span><span class="spec-val">400 °C</span></div>
+            <div class="spec"><span class="spec-lbl">Tornillo</span><span class="spec-val">90 cm</span></div>
+            <div class="spec"><span class="spec-lbl">Dimensiones</span><span class="spec-val">58 × 144 × 117 cm</span></div>
+          </div>
+          <div class="maq-price">
+            <div>
+              <div class="price-cop">$18.000.000 + IVA</div>
+              <div class="price-usd">≈ USD $5,065</div>
+            </div>
+            <div class="price-note">Puesta en fábrica<br>USD referencial</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="maq-note">
+      <p><strong>Forma de pago:</strong> 60% anticipo + 40% para despacho &nbsp;·&nbsp; <strong>Entrega:</strong> ~30 días hábiles (lunes a viernes) &nbsp;·&nbsp; <strong>Cotización válida:</strong> 30 días &nbsp;·&nbsp; Precios COP, USD referencial a tasa del momento.</p>
+      <a href="https://wa.me/573212437601?text=Hola%20Kuiica%2C%20me%20interesa%20cotizar%20una%20m%C3%A1quina" target="_blank" rel="noopener" class="btn-primary" style="white-space:nowrap">Solicitar cotización →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PRODUCTOS CORPORATIVOS ═══════════════ -->
+<section id="productos">
+  <div class="container">
+    <div class="prod-intro">
+      <div class="fade-up">
+        <p class="eyebrow">Regalos empresariales</p>
+        <h2 class="s-title">Productos corporativos</h2>
+        <p class="s-lead">Objetos funcionales hechos con plástico 100% recuperado. Cada pieza es única, personalizable con la marca de tu empresa.</p>
+        <p style="font-size:.88rem;color:var(--text);margin-bottom:1.5rem;line-height:1.7;">
+          <strong>Pedido mínimo:</strong> 20 unidades &nbsp;·&nbsp;
+          <strong>Colores:</strong> Rojo, Azul, Verde, Blanco &nbsp;·&nbsp;
+          <strong>Placa en metal</strong> personalizada incluida
+        </p>
+        <a href="https://wa.me/573212437601?text=Hola%20Kuiica%2C%20me%20interesan%20los%20productos%20corporativos" target="_blank" rel="noopener" class="btn-primary">Cotizar productos →</a>
+      </div>
+      <div class="prod-intro-img fade-up" style="transition-delay:.15s">
+        <img src="img/productos-hero.jpg" alt="Productos corporativos Kuiica en plástico reciclado">
+      </div>
+    </div>
+
+    <div class="prod-grid">
+      <div class="prod-card fade-up">
+        <div class="prod-img"><img src="img/prod-soporte-celular.jpg" alt="Soporte celular reciclado"></div>
+        <div class="prod-body"><h4>Soporte celular</h4><p>El aliado perfecto en tu escritorio.</p><span class="prod-badge">≡ 1 botella HDPE</span></div>
+      </div>
+      <div class="prod-card fade-up" style="transition-delay:.05s">
+        <div class="prod-img"><img src="img/prod-soporte-portatil.jpg" alt="Soporte portátil reciclado"></div>
+        <div class="prod-body"><h4>Soporte portátil</h4><p>El aliado perfecto para tu trabajo.</p><span class="prod-badge">≡ 3 botellas HDPE</span></div>
+      </div>
+      <div class="prod-card fade-up" style="transition-delay:.1s">
+        <div class="prod-img"><img src="img/prod-agenda.jpg" alt="Agenda tapa reciclada"></div>
+        <div class="prod-body"><h4>Agenda</h4><p>Tapas rígidas en plástico recuperado. ¼ y ½ carta.</p><span class="prod-badge">≡ 1–2 botellas HDPE</span></div>
+      </div>
+      <div class="prod-card fade-up" style="transition-delay:.15s">
+        <div class="prod-img"><img src="img/prod-llaveros.jpg" alt="Llaveros personalizados reciclados"></div>
+        <div class="prod-body"><h4>Llaveros</h4><p>Múltiples formas, con argollas y mosquetones.</p><span class="prod-badge">≡ 3 tapas HDPE</span></div>
+      </div>
+      <div class="prod-card fade-up" style="transition-delay:.2s">
+        <div class="prod-img"><img src="img/prod-destapador.jpg" alt="Souvenir destapador imán"></div>
+        <div class="prod-body"><h4>Souvenir destapador</h4><p>Destapador + imán de nevera. Funcional y único.</p><span class="prod-badge">≡ 1 botella HDPE</span></div>
+      </div>
+      <div class="prod-card fade-up" style="transition-delay:.25s">
+        <div class="prod-img"><img src="img/prod-portavasos.jpg" alt="Set 4 portavasos reciclados"></div>
+        <div class="prod-body"><h4>Set portavasos ×4</h4><p>Cada set es único. Ideal para escritorios y cocinas.</p><span class="prod-badge">≡ 17 tapas HDPE</span></div>
+      </div>
+      <div class="prod-card fade-up" style="transition-delay:.3s">
+        <div class="prod-img"><img src="img/prod-matera.jpg" alt="Matera organizador escritorio reciclado"></div>
+        <div class="prod-body"><h4>Matera / organizador</h4><p>Pequeño objeto, dos propósitos. La armas tú mismo.</p><span class="prod-badge">≡ 17 tapas HDPE</span></div>
+      </div>
+      <div class="prod-card fade-up" style="transition-delay:.35s">
+        <div class="prod-img"><img src="img/prod-trofeo.jpg" alt="Trofeos y medallas recicladas Kuiica"></div>
+        <div class="prod-body"><h4>Trofeos y medallas</h4><p>El éxito se siente mejor cuando es sostenible.</p><span class="prod-badge">Personalizado</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ TALLERES ═══════════════ -->
+<section id="talleres">
+  <div class="container">
+    <div class="talleres-grid">
+      <div class="fade-up">
+        <div class="talleres-photos">
+          <div class="t-photo"><img src="img/taller-1.jpg" alt="Taller experiencia corporativa Kuiica"></div>
+          <div class="t-photo"><img src="img/taller-2.jpg" alt="Materiales reciclados taller"></div>
+          <div class="t-photo"><img src="img/taller-3.jpg" alt="Proceso reciclaje plástico taller"></div>
+        </div>
+      </div>
+      <div class="fade-up" style="transition-delay:.15s">
+        <p class="eyebrow">Experiencia corporativa</p>
+        <h2 class="s-title">Talleres de experiencia</h2>
+        <p style="color:var(--text);font-size:.93rem;line-height:1.75;">Llevamos nuestro saber a tu empresa. Un espacio de co-creación donde sus equipos experimentan el ciclo completo del plástico, desde el residuo hasta el objeto terminado.</p>
+        <ul class="t-bullets">
+          <li>
+            <div class="bullet-dot"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p><strong>Co-creación en vivo</strong> — Tu equipo transforma plástico reciclado con las manos.</p>
+          </li>
+          <li>
+            <div class="bullet-dot"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p><strong>Cultura ambiental</strong> — Fortalecemos la conciencia sostenible mediante el hacer.</p>
+          </li>
+          <li>
+            <div class="bullet-dot"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p><strong>Objeto final</strong> — Cada participante se lleva una pieza única hecha por él mismo.</p>
+          </li>
+        </ul>
+        <div class="t-limits">
+          <div><div class="lim-num">10</div><div class="lim-lbl">Mínimo personas</div></div>
+          <div><div class="lim-num">20</div><div class="lim-lbl">Máximo personas</div></div>
+        </div>
+        <div style="margin-top:2rem">
+          <a href="https://wa.me/573212437601?text=Hola%20Kuiica%2C%20me%20interesa%20un%20taller%20corporativo" target="_blank" rel="noopener" class="btn-primary">Reservar taller →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTACTO ═══════════════ -->
+<section id="contacto">
+  <div class="container">
+    <p class="eyebrow">Hablemos</p>
+    <h2 class="s-title">¿Trabajamos juntos<br>por un futuro circular?</h2>
+    <div class="contacto-grid">
+
+      <div class="c-items fade-up">
+        <div class="c-item">
+          <div class="c-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <h4>Dirección</h4>
+            <p>Carrera 27B #24B-23, Los Mártires<br>Bogotá, Colombia</p>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.27 6.27l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <h4>WhatsApp</h4>
+            <a href="https://wa.me/573212437601">+57 321 243 7601</a>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:kuiicalab@gmail.com">kuiicalab@gmail.com</a>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
+          <div>
+            <h4>Instagram</h4>
+            <a href="https://instagram.com/kuiica_lab" target="_blank" rel="noopener">@kuiica_lab</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-box fade-up" style="transition-delay:.15s">
+        <h3>Hablemos de tu próximo proyecto</h3>
+        <p>En Kuiica, estamos listos para asesorarte y convertir tus ideas en soluciones corporativas de alto nivel. Respondemos en menos de 24 horas.</p>
+        <a href="https://wa.me/573212437601?text=Hola%20Kuiica%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios" target="_blank" rel="noopener" class="btn-wa">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Escribir por WhatsApp
+        </a>
+        <div class="redes">
+          <a href="https://instagram.com/kuiica_lab" target="_blank" rel="noopener" class="red-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @kuiica_lab
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="/img/logo.png" width="30" height="34" aria-hidden="true" style="display:block;filter:brightness(0) invert(1);">
+      kuiica
+    </div>
+    <div class="footer-links">
+      <a href="/privacy.html">Política de privacidad</a>
+      <a href="/privacidad.html">Privacidad (ES)</a>
+      <a href="/datos.html">Eliminación de datos</a>
+      <a href="https://instagram.com/kuiica_lab" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="footer-copy">© 2026 Kuiica S.A.S. · Bogotá, Colombia</div>
+  </div>
+</footer>
+
+<!-- ═══════════════ FAB WHATSAPP ═══════════════ -->
+<a href="https://wa.me/573212437601" target="_blank" rel="noopener" class="fab-wa" aria-label="Contactar por WhatsApp">
+  <svg width="27" height="27" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+  // ── Mobile menu ──
+  function toggleMenu() {
+    document.getElementById('nav-mobile').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('nav-mobile').classList.remove('open');
+  }
+
+  // ── Fade-up on scroll ──
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  // ── Number counter ──
+  const counterIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { runCounter(e.target); counterIO.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(el => counterIO.observe(el));
+
+  function runCounter(el) {
+    const target = +el.dataset.target;
+    const dur = 1400;
+    const t0 = performance.now();
+    (function step(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(eased * target).toLocaleString('es-CO');
+      if (p < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+</script>
+</body>
+</html>
