@@ -98,6 +98,30 @@ sudo nginx -t && sudo systemctl reload nginx
 
 ---
 
+## Primera vez en equipo nuevo
+
+No se necesita instalar nada especial para este proyecto (es HTML/CSS puro).
+Solo se necesita **Git** instalado.
+
+```powershell
+# 1. Verificar que la carpeta de OneDrive ya esté sincronizada
+ls "$env:USERPROFILE\OneDrive\Escritorio\Claude\pagina web"
+
+# 2. Entrar y hacer pull para tener lo último
+cd "$env:USERPROFILE\OneDrive\Escritorio\Claude\pagina web"
+git pull
+
+# 3. Verificar acceso al VPS (para deploy)
+ssh -i "$env:USERPROFILE\OneDrive\Escritorio\Claude\Vega Lyrae\vega-hetzner" juan@46.224.223.222 "echo OK"
+```
+
+Si el SSH da error de permisos en la llave privada:
+```powershell
+icacls "$env:USERPROFILE\OneDrive\Escritorio\Claude\Vega Lyrae\vega-hetzner" /inheritance:r /grant:r "$env:USERNAME:R"
+```
+
+---
+
 ## Flujo de trabajo recomendado
 
 1. `git pull` antes de empezar
