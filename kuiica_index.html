@@ -300,12 +300,12 @@
       align-items: center;
       justify-content: center;
       gap: .55rem;
-      width: 130px;
-      height: 96px;
-      background: var(--cream);
+      width: 170px;
+      height: 110px;
+      background: var(--white);
       border-radius: var(--r-sm);
       border: 1.5px solid rgba(123,127,212,.13);
-      padding: 1.1rem .8rem .8rem;
+      padding: 1rem 1.2rem .8rem;
       transition: border-color .25s, transform .25s, box-shadow .25s;
       cursor: default;
     }
@@ -314,20 +314,30 @@
       transform: translateY(-4px);
       box-shadow: var(--shadow);
     }
-    .brand-item svg { color: var(--blue); opacity: .55; transition: opacity .25s; }
-    .brand-item:hover svg { opacity: .9; }
+    .brand-item img {
+      max-height: 58px;
+      max-width: 140px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: grayscale(1) sepia(1) saturate(4) hue-rotate(208deg) brightness(0.85) opacity(.6);
+      transition: filter .3s;
+    }
+    .brand-item:hover img {
+      filter: grayscale(1) sepia(1) saturate(4) hue-rotate(208deg) brightness(0.9) opacity(.95);
+    }
     .brand-item span {
-      font-size: .7rem;
+      font-size: .65rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: .08em;
+      letter-spacing: .07em;
       color: var(--blue);
-      opacity: .5;
+      opacity: .45;
       text-align: center;
       line-height: 1.25;
       transition: opacity .25s;
     }
-    .brand-item:hover span { opacity: .85; }
+    .brand-item:hover span { opacity: .8; }
 
     /* ── CONTACTO ── */
     #contacto { background: var(--cream); }
@@ -777,72 +787,88 @@
   <div class="marcas-slider">
     <div class="marcas-track">
 
-      <!-- ── SET 1 ── reemplaza cada brand-item con el logo real -->
+      <!-- ── SET 1 ── -->
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/><path d="M8 12h.01M16 12h.01"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/juan-valdez.png" alt="Juan Valdez" loading="lazy">
+        <span>Juan Valdez</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/vision-circular.jpg" alt="Visión Circular" loading="lazy">
+        <span>Visión Circular</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/idom.png" alt="IDOM" loading="lazy">
+        <span>IDOM</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/corferias.png" alt="Corferias" loading="lazy">
+        <span>Corferias</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/ccb.png" alt="Cámara de Comercio de Bogotá" loading="lazy">
+        <span>Cámara de Comercio</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/casa-luker.png" alt="Casa Luker" loading="lazy">
+        <span>Casa Luker</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/grupo-gaviria.png" alt="Grupo Gaviria" loading="lazy">
+        <span>Grupo Gaviria</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/cmmc.png" alt="Corporación Mundial de la Mujer Colombia" loading="lazy">
+        <span>Corp. Mundial Mujer</span>
+      </div>
+      <div class="brand-item">
+        <img src="/img/logos/sintrauniminuto.png" alt="Sintrauniminuto" loading="lazy">
+        <span>Sintrauniminuto</span>
+      </div>
+      <div class="brand-item">
+        <img src="/img/logos/bonema.png" alt="Bonema" loading="lazy">
+        <span>Bonema</span>
       </div>
 
       <!-- ── SET 2 (copia exacta para el loop) ── -->
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/><path d="M8 12h.01M16 12h.01"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/juan-valdez.png" alt="Juan Valdez" loading="lazy">
+        <span>Juan Valdez</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/vision-circular.jpg" alt="Visión Circular" loading="lazy">
+        <span>Visión Circular</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/idom.png" alt="IDOM" loading="lazy">
+        <span>IDOM</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/corferias.png" alt="Corferias" loading="lazy">
+        <span>Corferias</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/ccb.png" alt="Cámara de Comercio de Bogotá" loading="lazy">
+        <span>Cámara de Comercio</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/casa-luker.png" alt="Casa Luker" loading="lazy">
+        <span>Casa Luker</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/grupo-gaviria.png" alt="Grupo Gaviria" loading="lazy">
+        <span>Grupo Gaviria</span>
       </div>
       <div class="brand-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <span>Tu Marca</span>
+        <img src="/img/logos/cmmc.png" alt="Corporación Mundial de la Mujer Colombia" loading="lazy">
+        <span>Corp. Mundial Mujer</span>
+      </div>
+      <div class="brand-item">
+        <img src="/img/logos/sintrauniminuto.png" alt="Sintrauniminuto" loading="lazy">
+        <span>Sintrauniminuto</span>
+      </div>
+      <div class="brand-item">
+        <img src="/img/logos/bonema.png" alt="Bonema" loading="lazy">
+        <span>Bonema</span>
       </div>
 
     </div>
